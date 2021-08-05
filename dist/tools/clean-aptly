@@ -1,0 +1,9 @@
+#!/bin/bash
+
+distros=(buster bullseye)
+
+for distro in "${distros[@]}"; do
+    aptly publish drop "$distro"
+    aptly snapshot drop "envoy-release-${distro}"
+    aptly repo drop "envoy-release-${distro}"
+done

@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+echo "Building aptly..."
+
+GOPATH="${GOPATH:-~/go}"
+PATH="$PATH:$GOPATH/bin"
+
+if [[ $(command -v aptly) ]]; then
+    echo "aptly command exists, no need to build"
+    exit 0
+fi
+
+if [[ ! -e aptly ]]; then
+    echo "cloning aptly"
+    git clone https://github.com/aptly-dev/aptly
+fi
+
+cd aptly
+make modules install

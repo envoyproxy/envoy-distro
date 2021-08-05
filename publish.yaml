@@ -1,0 +1,9 @@
+
+1.22.0:
+  deb:
+  - buster
+  - bullseye
+  - hirstute
+  rpm:
+  - centos
+  - rhel

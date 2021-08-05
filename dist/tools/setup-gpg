@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+if [[ -n "$SNAKEOIL_REPO_PRIVATE_KEY" ]]; then
+    echo "$SNAKEOIL_REPO_PRIVATE_KEY" | tr ' ' '\n' | base64 --decode | gpg --import
+fi
+
+if [[ -n "$SNAKEOIL_ENVOY_MAINTAINERS_PUBLIC_KEY" ]]; then
+    touch ~/.gnupg/trustedkeys.gpg
+    echo "$SNAKEOIL_ENVOY_MAINTAINERS_PUBLIC_KEY" | tr ' ' '\n' | base64 --decode | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+fi

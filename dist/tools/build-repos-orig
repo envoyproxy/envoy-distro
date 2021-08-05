@@ -1,0 +1,52 @@
+#!/bin/bash -e
+
+echo "Building repos..."
+
+GOPATH="${GOPATH:-~/go}"
+PATH="$PATH:$GOPATH/bin"
+DISTROS=("buster" "bullseye" "impish" "hirstute")
+
+
+build_version () {
+    local changes distribution envoy_version output_dir release version
+    version="$1"
+    distribution="$2"
+    echo "adding files: ${version} ${distribution}"
+    release="envoy-release-${distribution}"
+    for changes in $(find "packages/${version}/deb/" -name "*.${distribution}.changes"); do
+        aptly repo include -no-remove-files "$changes"
+    done
+}
+
+create_distro () {
+    local distribution="$1"
+    local version="$1"
+    echo "Creating distro: ${distribution} for ${version}"
+    aptly repo drop -force "$distribution" &> /dev/null || :
+    aptly repo create -distribution="$distribution" -component=main "$distribution"
+}
+
+build_versions () {
+    for distribution in "${DISTROS[@]}"; do
+        create_distro "$distribution"
+    done
+
+    for version in $(ls packages); do
+        for distribution in "${DISTROS[@]}"; do
+            build_version "$version" "$distribution"
+        done
+    done
+
+    for distribution in "${DISTROS[@]}"; do
+        aptly snapshot drop -force "$distribution" &> /dev/null || :
+        aptly snapshot create "$distribution" from repo "$distribution"
+        aptly publish snapshot -architectures="amd64,arm64" "$distribution"
+        mkdir -p html
+        cp -a ~/.aptly/public/* html
+        rm -rf ~/.aptly/public
+    done
+}
+
+build_versions
+
+find html -name "*"

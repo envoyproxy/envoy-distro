@@ -20,9 +20,10 @@ genrule(
     name = "html",
     outs = ["site.tar"],
     cmd = """
-    tar -chf $@ -C $(location :repos) .
+    tar -chf $@ -C $(location //site:build) .
     """,
     tools = [
         ":repos",
+        "//site:build",
     ],
 )

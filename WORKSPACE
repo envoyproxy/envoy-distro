@@ -31,3 +31,7 @@ load("@envoy//bazel:dependency_imports.bzl", "envoy_dependency_imports")
 envoy_dependency_imports()
 
 # gazelle:repo bazel_gazelle
+
+load("aptly_deps.bzl", "aptly_dependencies")
+
+aptly_dependencies()

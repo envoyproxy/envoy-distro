@@ -1,0 +1,21 @@
+repo: phlax/release-testing
+file_types:
+  deb: .*(\.deb|\.changes)$
+  rpm: .*\.rpm$
+versions:
+  1.19.0:
+    deb:
+    - buster
+    - bullseye
+    - hirstute
+    rpm:
+    - centos
+    - rhel
+  1.20.0:
+    deb:
+    - buster
+    - bullseye
+    - hirstute
+    rpm:
+    - centos
+    - rhel

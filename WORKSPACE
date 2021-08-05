@@ -6,8 +6,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "envoy",
-    strip_prefix = "envoy-0af9764936e7fbc92b72933502f24f30cae86536",
-    urls = ["https://github.com/envoyproxy/envoy/archive/0af9764936e7fbc92b72933502f24f30cae86536.tar.gz"],
+    strip_prefix = "envoy-29002754c69c07b9e9cf66b97d2964e38dac31a9",
+    urls = ["https://github.com/phlax/envoy/archive/29002754c69c07b9e9cf66b97d2964e38dac31a9.tar.gz"],
 )
 
 load("@envoy//bazel:api_binding.bzl", "envoy_api_binding")

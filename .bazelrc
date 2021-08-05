@@ -1,0 +1,5 @@
+
+run --color=yes
+
+build --color=yes
+build --host_force_python=PY3

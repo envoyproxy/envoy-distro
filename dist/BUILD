@@ -1,10 +1,28 @@
 
 genrule(
+    name = "repos",
+    outs = ["repos.tar"],
+    cmd = """
+    $(location //dist/tools/repos:build_repos) \
+        phlax phlax/release-testing some.key \
+        --deb_aptly_command=$(location @com_github_aptly_dev_aptly//:aptly) \
+        --archive=$@
+    """,
+    tools = [
+        "//:publish.yaml",
+        "//dist/tools/repos:build_repos",
+        "@com_github_aptly_dev_aptly//:aptly",
+    ],
+)
+
+
+genrule(
     name = "html",
     outs = ["site.tar"],
     cmd = """
-    mkdir -p /tmp/out \
-    && echo "Helo, World" > /tmp/out/index.html \
-    && tar -chf $@ -C /tmp/out .
+    tar -chf $@ -C $(location :repos) .
     """,
+    tools = [
+        ":repos",
+    ],
 )

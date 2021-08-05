@@ -1,0 +1,80 @@
+{
+  "name": "site",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/helper-regex": "^7.10.5",
+    "@octokit/rest": "^18.0.12",
+    "@reduxjs/toolkit": "^1.4.0",
+    "bootstrap": "^4.5.3",
+    "javascript-time-ago": "^2.3.8",
+    "js-yaml": "^3.14.0",
+    "js-yaml-loader": "^1.2.2",
+    "parse-github-event": "^1.1.3",
+    "prismjs": "^1.24.1",
+    "prop-types-exact": "^1.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-markdown": "^5.0.3",
+    "react-redux": "^7.2.4",
+    "react-scripts": "4.0.1",
+    "reactstrap": "^8.7.1",
+    "typescript": "^4.3.5",
+    "web-vitals": "^2.1.0",
+    "yarn": "^1.22.10"
+  },
+  "devDependencies": {
+    "@bazel/ibazel": "^0.15.10",
+    "@bazel/runfiles": "^3.7.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.3.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.3.2",
+    "enzyme": "^3.11.0",
+    "patch-package": "^6.2.2"
+  },
+  "scripts": {
+    "start": "ibazel run //:start",
+    "build": "bazel build //:build",
+    "test": "ibazel test //:test",
+    "postinstall": "patch-package",
+    "lint": "./node_modules/.bin/eslint --max-warnings 0 src"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/*.eslintrc.js",
+      "!**/coverage/**",
+      "!**/dist/**",
+      "!**/node_modules/**"
+    ],
+    "testMatch": [
+      "**/tests/**/*.js?(x)"
+    ]
+  }
+}

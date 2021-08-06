@@ -4,8 +4,9 @@ def aptly_dependencies():
     go_repository(
         name = "com_github_aptly_dev_aptly",
         importpath = "github.com/aptly-dev/aptly",
-        sum = "h1:6N8931mh2TvHeSMBePd8TR8du2jCWCDzRmbDw1eD7/g=",
-        version = "v1.4.0",
+        urls = ["https://github.com/aptly-dev/aptly/archive/f9d08e1377970d2b13410da3d1d452b935041a4e.tar.gz"],
+        strip_prefix = "aptly-f9d08e1377970d2b13410da3d1d452b935041a4e",
+        type = "tar.gz",
     )
 
     go_repository(

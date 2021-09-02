@@ -1,1 +1,1 @@
--e git+git://github.com/envoyproxy/pytooling@46f07bcdb442db4e59662610accc0e1621229bfb#egg=envoy.distribution.repo&subdirectory=envoy.distribution.repo
+-e git+git://github.com/envoyproxy/pytooling@32e3bbf602f166172c7f28de2567eabaf4e9ec4b#egg=envoy.distribution.repo&subdirectory=envoy.distribution.repo
